@@ -27,8 +27,8 @@ public class Deck {
 
     public void shuffle() {
         for (int j = 0; j < deckOfCards.size(); j++) {
-            randomIndex = (int) (Math.random() * 52);
-            randomIndex2 = (int) (Math.random() * 52);
+            randomIndex = (int) (Math.random() * deckOfCards.size());
+            randomIndex2 = (int) (Math.random() * deckOfCards.size());
             Card temp = new Card();
             temp = deckOfCards.get(randomIndex);
             deckOfCards.set(randomIndex, deckOfCards.get(randomIndex2));
@@ -51,5 +51,9 @@ public class Deck {
             contents += deckOfCards.get(i) + "\t\t";
         }
         return contents;
+    }
+    
+    public ArrayList<Card> getDeckOfCards(){
+        return deckOfCards;
     }
 }

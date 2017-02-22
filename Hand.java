@@ -43,7 +43,18 @@ public class Hand {
         current.cards[position - 1] = deck.getDeckOfCards().remove((int) (Math.random()) * deck.getDeckOfCards().size());
         current.sortHand();
     }
-
+    public Card getCard(int spot){
+        return cards[spot];
+    }
+    public void nextTurn (Hand current, Deck deck, int index){
+        //Discards a Card
+        int position = index;
+        deck.getDeckOfCards().add(current.cards[position - 1]);
+        current.cards[position - 1] = null;
+        //Draws a Card
+        current.cards[position - 1] = deck.getDeckOfCards().remove((int) (Math.random()) * deck.getDeckOfCards().size());
+        current.sortHand();
+    }
     public String toString() {
         String contents = "";
         for (int i = 0; i < cards.length; i++) {

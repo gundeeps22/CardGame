@@ -5,6 +5,8 @@
  */
 package cardgame;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Ethan Ta
@@ -145,4 +147,5 @@ public class Card implements Comparable {
             objects[position] = key;
         }
     }
+
 }
