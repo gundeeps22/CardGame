@@ -5,6 +5,9 @@
  */
 package cardgame;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author Ethan Ta
@@ -12,8 +15,11 @@ package cardgame;
 public class Hand {
 
     private Card[] cards;
-    
-    public Hand(Card[] cards){
+    private Card[] tempcards;
+    private ArrayList<Card> temp = new ArrayList<Card>();
+    private Scanner scan = new Scanner(System.in);
+
+    public Hand(Card[] cards) {
         this.cards = cards;
         this.sortHand();
     }
@@ -21,11 +27,29 @@ public class Hand {
     public void sortHand() {
         Card.insertionSort(cards, 5);
     }
-    public String toString(){
+
+    public void discardAndDraw(Hand current, Deck deck) {
+        //Discards a Card
+        int position = 0;
+        System.out.println("Which Card Would you like to Discard? (1-5): ");
+        position = scan.nextInt();
+        while (position < 1 || position > 5) {
+            System.out.println("Card to Discard? (1-5): ");
+            position = scan.nextInt();
+        }
+        deck.getDeckOfCards().add(current.cards[position - 1]);
+        current.cards[position - 1] = null;
+        //Draws a Card
+        current.cards[position - 1] = deck.getDeckOfCards().remove((int) (Math.random()) * deck.getDeckOfCards().size());
+        current.sortHand();
+    }
+
+    public String toString() {
         String contents = "";
-        for (int i = 0; i < cards.length; i ++){
+        for (int i = 0; i < cards.length; i++) {
             contents += cards[i] + "\t\t";
         }
         return contents;
     }
+
 }
